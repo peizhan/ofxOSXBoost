@@ -171,7 +171,8 @@ buildBoostForOSX()
 {
     cd $BOOST_SRC
 
-    ./b2 -j16 --build-dir=osx-build --stagedir=osx-build/stage toolset=clang cxxflags="-std=c++11 -stdlib=libc++ -arch i386 -arch x86_64" linkflags="-stdlib=libc++" link=static threading=multi stage
+    ./b2 -j16 --build-dir=osx-build --stagedir=osx-build/stage --prefix=$PREFIXDIR toolset=clang cxxflags="-std=c++11 -stdlib=libc++ -arch i386 -arch x86_64" linkflags="-stdlib=libc++" link=static threading=multi stage
+    ./b2 -j16 --build-dir=osx-build --stagedir=osx-build/stage --prefix=$PREFIXDIR toolset=clang cxxflags="-std=c++11 -stdlib=libc++ -arch i386 -arch x86_64" linkflags="-stdlib=libc++" link=static threading=multi install
     doneSection
 }
 
@@ -181,11 +182,11 @@ buildIncludes()
     
     echo "Copying includes..."
     mkdir -p $OSXINCLUDEDIR
-    cp -r $BOOST_INCLUDE/*  $OSXINCLUDEDIR/
+    #cp -r $BOOST_INCLUDE/*  $OSXINCLUDEDIR/
+    cp -r $PREFIXDIR/include/boost/* $OSXINCLUDEDIR/
 
     doneSection
 }
-
 #===============================================================================
 
 scrunchAllLibsTogetherInOneLibPerPlatform()
