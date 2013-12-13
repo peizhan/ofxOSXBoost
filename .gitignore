@@ -10,3 +10,7 @@
 # Compiled Static libraries
 *.lai
 *.la
+
+# Do no ignore the debug folder
+!*/debug/
+!*/debug/*
