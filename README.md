@@ -39,12 +39,12 @@ How to get working with a project in Xcode?
 ============
 
 In Xcode Build Settings for your project:
-- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/lib/"
+- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/lib/osx_i386/"
 - Add to Header Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/include"
 
 
 In Xcode Build Phases
-- Add the libs in the addons/ofxOSXBoost/libs/boost/lib/ directory to Link Binary With Libraries
+- Add the libs in the addons/ofxOSXBoost/libs/boost/lib/osx_i386/ directory to Link Binary With Libraries
 
 - Enjoy boost :)
 
