@@ -38,7 +38,7 @@ cd "$here" || exit 1
 : ${SRCDIR:=`pwd`/temp/src}
 : ${OSXBUILDDIR:=`pwd`/lib}
 : ${PREFIXDIR:=`pwd`/temp/prefix}
-: ${OSXINCLUDEDIR:=`pwd`/src/boost}
+: ${OSXINCLUDEDIR:=`pwd`/include/boost}
 : ${COMPILER:="clang++"}
 : ${BOOST_VERSION:=1.55.0}
 : ${BOOST_VERSION2:=1_55_0}
