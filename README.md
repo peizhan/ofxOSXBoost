@@ -39,8 +39,8 @@ How to get working with a project in Xcode?
 ============
 
 In Xcode Build Settings for your project:
-- Add to Library Search Paths: "$(SRCROOT)../../../addons/ofxOSXBoost/lib/" 
-- Add to Header Search Paths: "$(SRCROOT)../../../addons/ofxOSXBoost/src"
+- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/lib/" 
+- Add to Header Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/include"
 
 
 In Xcode Build Phases
