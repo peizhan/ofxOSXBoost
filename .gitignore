@@ -11,3 +11,7 @@
 *.lai
 *.la
 *.a
+
+# Do no ignore the debug folder
+!*/debug/
+!*/debug/*

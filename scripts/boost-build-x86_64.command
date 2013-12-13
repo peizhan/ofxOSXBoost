@@ -13,8 +13,6 @@
 #    BOOST_LIBS:        which libraries to build
 #    OSX_SDKVERSION:    OSX SDK Version. I.E. 10.8
 #
-# Then go get the source tar.bz of the boost you want to build, shove it in the
-# same directory as this script, and run "./boost.sh". Grab a cuppa. And voila.
 #===============================================================================
 
 #!/bin/sh
@@ -36,11 +34,11 @@ cd "$here" || exit 1
 #
 # Should perhaps also consider/use instead: -BOOST_SP_USE_PTHREADS
 
-: ${TARBALLDIR:=`pwd`}
-: ${SRCDIR:=`pwd`/temp/src}
-: ${OSXBUILDDIR:=`pwd`/lib}
-: ${PREFIXDIR:=`pwd`/temp/prefix}
-: ${OSXINCLUDEDIR:=`pwd`/include/boost}
+: ${TARBALLDIR:=`pwd`/..}
+: ${SRCDIR:=`pwd`/../temp/src}
+: ${OSXBUILDDIR:=`pwd`/../libs/boost/lib}
+: ${PREFIXDIR:=`pwd`/../temp/prefix}
+: ${OSXINCLUDEDIR:=`pwd`/../libs/boost/include/boost}
 : ${COMPILER:="clang++"}
 : ${BOOST_VERSION:=1.55.0}
 : ${BOOST_VERSION2:=1_55_0}
@@ -83,8 +81,7 @@ cleanEverythingReadyToStart()
     rm -rf osx-build
     rm -rf $OSXBUILDDIR
     rm -rf $OSXINCLUDEDIR
-    rm -rf $OSXBUILDDIR/obj
- #   rm -rf $OSXBUILDDIR/x86_64/obj
+    rm -rf $OSXBUILDDIR/osx_x86_64/obj
     rm -rf $SRCDIR
     rm -rf $TARBALLDIR/temp
  #   rm -f $TARBALLDIR/boost_${BOOST_VERSION2}.tar.bz2
@@ -97,8 +94,7 @@ postcleanEverything()
     echo Cleaning everything after the build...
 
     rm -rf osx-build
-    rm -rf $OSXBUILDDIR/obj
-#    rm -rf $OSXBUILDDIR/x86_64/obj
+    rm -rf $OSXBUILDDIR/osx_x86_64/obj
     rm -rf $SRCDIR
     rm -rf $TARBALLDIR/temp
     rm -f $TARBALLDIR/boost_${BOOST_VERSION2}.tar.bz2
@@ -194,7 +190,7 @@ scrunchAllLibsTogetherInOneLibPerPlatform()
 {
     cd $BOOST_SRC
 
-    mkdir -p $OSXBUILDDIR/obj
+    mkdir -p $OSXBUILDDIR/osx_x86_64/obj
 
     ALL_LIBS=""
 
@@ -203,8 +199,8 @@ scrunchAllLibsTogetherInOneLibPerPlatform()
     for NAME in $BOOST_LIBS; do
         ALL_LIBS="$ALL_LIBS libboost_$NAME.a"
 
-        $ARM_DEV_CMD lipo "osx-build/stage/lib/libboost_$NAME.a" -thin i386 -o $OSXBUILDDIR/libboost_$NAME.a
- #       $ARM_DEV_CMD lipo "osx-build/stage/lib/libboost_$NAME.a" -thin x86_64 -o $OSXBUILDDIR/x86_64/libboost_$NAME.a
+#        $ARM_DEV_CMD lipo "osx-build/stage/lib/libboost_$NAME.a" -thin i386 -o $OSXBUILDDIR/libboost_$NAME.a
+       $ARM_DEV_CMD lipo "osx-build/stage/lib/libboost_$NAME.a" -thin x86_64 -o $OSXBUILDDIR/osx_x86_64/libboost_$NAME.a
     done
 
     echo "Decomposing each architecture's .a files"
@@ -212,19 +208,18 @@ scrunchAllLibsTogetherInOneLibPerPlatform()
     for NAME in $ALL_LIBS; do
         echo Decomposing $NAME...
 
-        (cd $OSXBUILDDIR/obj; ar -x ../$NAME );
-#        (cd $OSXBUILDDIR/x86_64/obj; ar -x ../$NAME );
+#        (cd $OSXBUILDDIR/obj; ar -x ../$NAME );
+        (cd $OSXBUILDDIR/osx_x86_64/obj; ar -x ../$NAME );
     done
 
     echo "Linking each architecture into an uberlib ($ALL_LIBS => libboost.a )"
 
     
-    rm $OSXBUILDDIR/*/libboost.a
-    echo ...osx-i386
-    (cd $OSXBUILDDIR;  $SIM_DEV_CMD ar crus libboost.a obj/*.o; )
+#    echo ...osx-i386
+#    (cd $OSXBUILDDIR;  $SIM_DEV_CMD ar crus libboost.a obj/*.o; )
 
-#    echo ...x86_64
-#    (cd $OSXBUILDDIR/x86_64;  $SIM_DEV_CMD ar crus libboost.a obj/*.o; )
+    echo ...x86_64
+    (cd $OSXBUILDDIR/osx_x86_64;  $SIM_DEV_CMD ar crus libboost.a obj/*.o; )
 }
 
 #===============================================================================

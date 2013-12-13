@@ -28,17 +28,22 @@ How to Build?
 How to get working with a project in Xcode?
 ============
 
-In Xcode Build Settings for your project*:
-- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/lib/" 
-- Add to Header Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/include"
+In Xcode Build Settings for your project:
+
+For i386:
+- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/lib/osx_i386/" 
+For x86_64:
+- Add to Library Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/lib/osx_x86_64/" 
+
+Both:
+- Add to Header Search Paths: "$(SRCROOT)/../../../addons/ofxOSXBoost/libs/boost/include"
 
 
 In Xcode Build Phases*
-- Add the libs in the addons/ofxOSXBoost/lib/ directory to Link Binary With Libraries
+- Add the libs in the addons/ofxOSXBoost/libs/boost/lib/osx_x86_64/ or addons/ofxOSXBoost/libs/boost/lib/osx_i386/ directory to Link Binary With Libraries
 
 - Enjoy boost :)
 
-* = Note for when using the 'boost-build-all.command' you will need to add the folder associated with the target architecture for your project to the library search paths (i.e. '...ofxOSXBoost/lib/i386') and also add those libs to the build phases.
 
 
 
