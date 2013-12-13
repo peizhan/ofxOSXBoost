@@ -16,9 +16,9 @@
 
 meta:
 	ADDON_NAME = ofxOSXBoost
-	ADDON_DESCRIPTION = Addon for the open source boost libraries
+	ADDON_DESCRIPTION = Addon for the open source boost libraries. Includes pre-compiled binarys and scripts to build.
 	ADDON_AUTHOR = Danoli3
-	ADDON_TAGS = "osx"
+	ADDON_TAGS = "osx" "boost"
 	ADDON_URL = http://github.com/danoli3/ofxOSXBoost
 
 common:
@@ -64,15 +64,15 @@ osx:
 	# binary libraries, these will be usually parsed from the file system but some 
 	# libraries need to passed to the linker in a specific order 
 	ADDON_LIBS =
-	ADDON_LIBS += libs/boost/lib/libboost.a
-	ADDON_LIBS += libs/boost/lib/libboost_thread.a
-	ADDON_LIBS += libs/boost/lib/libboost_system.a
-	ADDON_LIBS += libs/boost/lib/libboost_signals.a
-	ADDON_LIBS += libs/boost/lib/libboost_regex.a
-	ADDON_LIBS += libs/boost/lib/libboost_random.a
-	ADDON_LIBS += libs/boost/lib/libboost_graph.a
-	ADDON_LIBS += libs/boost/lib/libboost_filesystem.a
-	ADDON_LIBS += libs/boost/lib/libboost_date_time.a
-	ADDON_LIBS += libs/boost/lib/libboost_chrono.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_thread.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_system.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_signals.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_regex.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_random.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_graph.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_filesystem.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_date_time.a
+	ADDON_LIBS += libs/boost/lib/osx_i386/libboost_chrono.a
 	
 	
